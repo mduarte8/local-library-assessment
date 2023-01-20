@@ -17,14 +17,14 @@ function getBooksBorrowedCount(books) {
 function getMostCommonGenres(books) {
   const maxArrayLength = 5;
   let genreArray = [];
-  books.forEach((bookElement) => {
+  books.forEach(({genre}) => {
     if (!genreArray.some((genreArrayElem)=> {
-      return genreArrayElem.name === bookElement.genre;
+      return genreArrayElem.name === genre;
     })) {
-      let newObj = {name: bookElement.genre, count: 1};
+      let newObj = {name: genre, count: 1};
       genreArray.push(newObj)
     } else {
-      genreArray.find((genreArrayElem) => genreArrayElem.name === bookElement.genre).count += 1;
+      genreArray.find((genreArrayElem) => genreArrayElem.name === genre).count += 1;
     }
     genreArray.sort((genreA, genreB)=> genreB.count - genreA.count);
     return genreArray;

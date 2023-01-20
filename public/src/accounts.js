@@ -17,14 +17,11 @@ function getTotalNumberOfBorrows(account, books) {
 }
 
 function getBooksPossessedByAccount(account, books, authors) {
-  // console.log("account is", account);
   let filteredBooks = books.filter((book) => { // creates an array filtered by ones that are checked out by account
     let boolFlag = false; // sets default flag to false
-    // console.log("book.borrows is", book.borrows);
     book.borrows.forEach((borrowInstance) => { // checks for each instance in the borrow array of a book if the id matches account id and if returned === false meaning it is currently checked out
       if (borrowInstance.id === account.id && !borrowInstance.returned) boolFlag = true; // flips boolean flag to true if criteria met
     });
-    // console.log("checkedOut is", boolFlag);
     return boolFlag;
   });
   return filteredBooks.map((book) => {
